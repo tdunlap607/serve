@@ -1,12 +1,13 @@
+# WORKFLOW DISABLED - Uncomment the "on:" section below to re-enable
 name: Docker CI
 
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-  merge_group:
-
+# on:
+#   push:
+#     branches: [ "master" ]
+#   pull_request:
+#     branches: [ "master" ]
+#   merge_group:
+# 
 
 jobs:
   test-build-and-container:

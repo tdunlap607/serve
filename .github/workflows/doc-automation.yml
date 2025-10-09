@@ -1,9 +1,10 @@
-on:
-  push:
-    branches:
-      - master
-  merge_group:
-
+# WORKFLOW DISABLED - Uncomment the "on:" section below to re-enable
+# on:
+#   push:
+#     branches:
+#       - master
+#   merge_group:
+# 
 jobs:
   build_docs_job:
     runs-on: ubuntu-20.04

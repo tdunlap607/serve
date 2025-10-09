@@ -1,17 +1,18 @@
+# WORKFLOW DISABLED - Uncomment the "on:" section below to re-enable
 name: Make an official Release of Docker Images
 
-on:
-  workflow_dispatch:
-    inputs:
-          upload_docker:
-            description: 'Upload TorchServe Docker Images?'
-            required: true
-            default: 'no'
-          upload_kfs:
-            description: 'Upload TorchServe-kfs Docker Images?'
-            required: true
-            default: 'no'
-
+# on:
+#   workflow_dispatch:
+#     inputs:
+#           upload_docker:
+#             description: 'Upload TorchServe Docker Images?'
+#             required: true
+#             default: 'no'
+#           upload_kfs:
+#             description: 'Upload TorchServe-kfs Docker Images?'
+#             required: true
+#             default: 'no'
+# 
 jobs:
   official-release-docker:
     runs-on: [self-hosted, ci-gpu]

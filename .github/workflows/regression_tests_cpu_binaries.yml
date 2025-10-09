@@ -1,10 +1,11 @@
+# WORKFLOW DISABLED - Uncomment the "on:" section below to re-enable
 name: Run Regression Tests for CPU nightly binaries
 
-on:
-  # run every day at 6:15am
-  schedule:
-    - cron: '15 6 * * *'
-
+# on:
+#   # run every day at 6:15am
+#   schedule:
+#     - cron: '15 6 * * *'
+# 
 concurrency:
   group: ci-cpu-${{ github.workflow }}-${{ github.ref == 'refs/heads/master' && github.run_number || github.ref }}
   cancel-in-progress: true

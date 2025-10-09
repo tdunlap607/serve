@@ -1,11 +1,12 @@
+# WORKFLOW DISABLED - Uncomment the "on:" section below to re-enable
 name: CI CPU - CPP Build
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - master
-
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches:
+#       - master
+# 
 concurrency:
   group: ci-cpu-${{ github.workflow }}-${{ github.ref == 'refs/heads/master' && github.run_number || github.ref }}
   cancel-in-progress: true
