@@ -1,16 +1,14 @@
-# WORKFLOW DISABLED - Uncomment the "on:" section below to re-enable
 name: CI CPU
 
-# on:
-#   workflow_dispatch:
-#   push:
-#     branches:
-#       - master
-#   pull_request:
-#     branches:
-#       - master
-#   merge_group:
-# 
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  merge_group:
 
 concurrency:
   group: ci-cpu-${{ github.workflow }}-${{ github.ref == 'refs/heads/master' && github.run_number || github.ref }}
@@ -18,20 +16,9 @@ concurrency:
 
 jobs:
   ci-cpu:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-20.04, macos-latest]
+    runs-on: ubuntu-24.04
     steps:
-      - name: Setup Python for M1
-        if: matrix.os == 'macos-latest'
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-          architecture: arm64
-      - name: Setup Python for all other OS
-        if: matrix.os != 'macos-latest'
+      - name: Setup Python 3.9
         uses: actions/setup-python@v5
         with:
           python-version: '3.9'
@@ -49,8 +36,8 @@ jobs:
         run: |
           python ts_scripts/install_dependencies.py --environment=dev
       - name: Torchserve Sanity
-        env:
-          TS_MAC_ARM64_CPU_ONLY: ${{ matrix.os == 'macos-latest' && 'True' || 'False' }}
+        # env:
+        #   TS_MAC_ARM64_CPU_ONLY: ${{ matrix.os == 'macos-latest' && 'True' || 'False' }}
         uses: nick-fields/retry@v3
         with:
           timeout_minutes: 60
@@ -60,9 +47,9 @@ jobs:
             python torchserve_sanity.py
       # Any coverage.xml will be picked up by this step
       # Just make sure each coverage.xml is in a different folder
-      - name: Upload codecov
-        if: matrix.os == 'ubuntu-20.04'
-        run : |
-          curl -Os https://uploader.codecov.io/latest/linux/codecov
-          chmod +x codecov
-          ./codecov
+      # - name: Upload codecov
+      #   if: matrix.os == 'ubuntu-20.04'
+      #   run : |
+      #     curl -Os https://uploader.codecov.io/latest/linux/codecov
+      #     chmod +x codecov
+      #     ./codecov
