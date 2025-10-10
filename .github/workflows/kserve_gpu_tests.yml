@@ -1,12 +1,11 @@
-# WORKFLOW DISABLED - Uncomment the "on:" section below to re-enable
 name: KServe GPU Nightly Tests
 
-# on:
-#   workflow_dispatch:
+on:
+  workflow_dispatch:
 #   # runs everyday  at 5:15am
 #   schedule:
 #     - cron:  '15 5 * * *'
-# 
+#
 jobs:
   kserve-gpu-tests:
     runs-on: [self-hosted, regression-test-gpu]

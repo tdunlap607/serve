@@ -1,8 +1,8 @@
-# WORKFLOW DISABLED - Uncomment the "on:" section below to re-enable
 name: Make an official Release
 
-# on: workflow_dispatch
-# 
+on:
+  workflow_dispatch:
+#
 jobs:
   official-release:
     runs-on: ubuntu-20.04

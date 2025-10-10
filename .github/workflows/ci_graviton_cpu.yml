@@ -1,8 +1,7 @@
-# WORKFLOW DISABLED - Uncomment the "on:" section below to re-enable
 name: CI CPU Graviton
 
-# on:
-#   workflow_dispatch:
+on:
+  workflow_dispatch:
 #   push:
 #     branches:
 #       - master
@@ -10,7 +9,7 @@ name: CI CPU Graviton
 #     branches:
 #       - master
 #   merge_group:
-# 
+#
 
 concurrency:
   group: ci-cpu-${{ github.workflow }}-${{ github.ref == 'refs/heads/master' && github.run_number || github.ref }}

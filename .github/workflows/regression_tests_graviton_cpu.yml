@@ -1,7 +1,7 @@
-# WORKFLOW DISABLED - Uncomment the "on:" section below to re-enable
 name: Run Regression Tests on CPU for Graviton
 
-# on:
+on:
+  workflow_dispatch:
 #   push:
 #     branches:
 #       - master
@@ -9,7 +9,7 @@ name: Run Regression Tests on CPU for Graviton
 #     branches:
 #       - master
 #   merge_group:
-# 
+#
 concurrency:
   group: ci-cpu-${{ github.workflow }}-${{ github.ref == 'refs/heads/master' && github.run_number || github.ref }}
   cancel-in-progress: true

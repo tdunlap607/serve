@@ -1,11 +1,12 @@
-# WORKFLOW DISABLED - Uncomment the "on:" section below to re-enable
 name: Benchmark torch.compile models nightly
 
-# on:
+on:
+  workflow_dispatch:
 #   # run every day at 9:15pm
 #   schedule:
 #     - cron:  '15 21 * * *'
-# 
+#
+
 jobs:
   nightly:
     strategy:
