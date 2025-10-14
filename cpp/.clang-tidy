@@ -40,6 +40,5 @@ Checks: >
   -performance-noexcept-move-constructor,
   -performance-unnecessary-value-param
 HeaderFilterRegex: '.*'
-AnalyzeTemporaryDtors: false
 #WarningsAsErrors: '*'
 ...
