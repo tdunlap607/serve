@@ -58,6 +58,8 @@ jobs:
           cd build && cmake ..
           make -j && make install
           make test
+        env:
+          RUSTFLAGS: "-A dangerous_implicit_autorefs"
       - name: Run test
         run: |
           cd test && pytest pytest/test_cpp_backend.py
