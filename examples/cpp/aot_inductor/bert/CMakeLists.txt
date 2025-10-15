@@ -1,6 +1,7 @@
 
 set(SPM_USE_BUILTIN_PROTOBUF ON CACHE BOOL "Use builtin protobuf" FORCE)
 set(SPM_ENABLE_SHARED OFF CACHE BOOL "Build shared library" FORCE)
+set(SPM_ENABLE_EXECUTABLE OFF CACHE BOOL "Build sentencepiece executables" FORCE)
 
 FetchContent_Declare(
   sentencepiece
