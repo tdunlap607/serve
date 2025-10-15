@@ -1,8 +1,16 @@
 # Set sentencepiece options before fetching tokenizer_cpp
 # tokenizer_cpp will fetch sentencepiece as a dependency
-set(SPM_USE_BUILTIN_PROTOBUF ON CACHE BOOL "Use builtin protobuf" FORCE)
+# Use OFF to avoid conflicts with PyTorch's protobuf headers
+# Since protobuf is fetched in the main CMakeLists.txt, sentencepiece should use that
+set(SPM_USE_BUILTIN_PROTOBUF OFF CACHE BOOL "Use builtin protobuf" FORCE)
 set(SPM_ENABLE_SHARED OFF CACHE BOOL "Build shared library" FORCE)
 set(SPM_ENABLE_EXECUTABLE OFF CACHE BOOL "Build sentencepiece executables" FORCE)
+
+# Ensure sentencepiece finds the protobuf from FetchContent
+# Set Protobuf paths to use the fetched version
+set(Protobuf_INCLUDE_DIR "${protobuf_SOURCE_DIR}/src" CACHE PATH "Protobuf include directory")
+set(Protobuf_LIBRARIES libprotobuf CACHE STRING "Protobuf libraries")
+set(Protobuf_PROTOC_EXECUTABLE protoc CACHE FILEPATH "Protobuf compiler")
 
 FetchContent_Declare(
   tokenizer_cpp
