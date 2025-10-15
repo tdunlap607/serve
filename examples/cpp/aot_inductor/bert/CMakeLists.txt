@@ -7,6 +7,11 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(tokenizer_cpp)
 
+# Add compile flags to handle old protobuf-lite type mismatches
+if(TARGET sentencepiece-static)
+  target_compile_options(sentencepiece-static PRIVATE -fpermissive)
+endif()
+
 add_custom_command(
     OUTPUT bert-seq.so
     COMMAND TOKENIZERS_PARALLELISM=false python ${CMAKE_CURRENT_SOURCE_DIR}/aot_compile_export.py
