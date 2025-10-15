@@ -1,4 +1,6 @@
 
+set(SPM_PROTOBUF_PROVIDER "package" CACHE STRING "Use external protobuf" FORCE)
+
 FetchContent_Declare(
   tokenizer_cpp
   GIT_REPOSITORY https://github.com/mlc-ai/tokenizers-cpp.git
