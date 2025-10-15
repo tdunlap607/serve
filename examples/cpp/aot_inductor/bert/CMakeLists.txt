@@ -1,16 +1,25 @@
 # Set sentencepiece options before fetching tokenizer_cpp
 # tokenizer_cpp will fetch sentencepiece as a dependency
-# Use OFF to avoid conflicts with PyTorch's protobuf headers
-# Since protobuf is fetched in the main CMakeLists.txt, sentencepiece should use that
+# Configure sentencepiece to use external protobuf from FetchContent
 set(SPM_USE_BUILTIN_PROTOBUF OFF CACHE BOOL "Use builtin protobuf" FORCE)
+set(SPM_PROTOBUF_PROVIDER "package" CACHE STRING "Use find_package for protobuf" FORCE)
 set(SPM_ENABLE_SHARED OFF CACHE BOOL "Build shared library" FORCE)
 set(SPM_ENABLE_EXECUTABLE OFF CACHE BOOL "Build sentencepiece executables" FORCE)
 
-# Ensure sentencepiece finds the protobuf from FetchContent
-# Set Protobuf paths to use the fetched version
-set(Protobuf_INCLUDE_DIR "${protobuf_SOURCE_DIR}/src" CACHE PATH "Protobuf include directory")
-set(Protobuf_LIBRARIES libprotobuf CACHE STRING "Protobuf libraries")
-set(Protobuf_PROTOC_EXECUTABLE protoc CACHE FILEPATH "Protobuf compiler")
+# Find system protoc compiler (needed for code generation)
+find_program(PROTOC_EXECUTABLE protoc REQUIRED)
+
+# Make the fetched protobuf discoverable by find_package(Protobuf)
+# Create the necessary variables and targets that find_package expects
+set(Protobuf_FOUND TRUE)
+set(Protobuf_VERSION "32.1")
+set(Protobuf_INCLUDE_DIRS "${protobuf_SOURCE_DIR}/src")
+set(Protobuf_LIBRARIES libprotobuf-lite)
+set(Protobuf_PROTOC_EXECUTABLE ${PROTOC_EXECUTABLE})
+set(Protobuf_LITE_LIBRARIES libprotobuf-lite)
+
+# Ensure the protobuf include directory is available
+include_directories(${protobuf_SOURCE_DIR}/src)
 
 FetchContent_Declare(
   tokenizer_cpp
