@@ -1,5 +1,13 @@
 
-set(SPM_PROTOBUF_PROVIDER "package" CACHE STRING "Use external protobuf" FORCE)
+set(SPM_USE_BUILTIN_PROTOBUF OFF CACHE BOOL "Use external protobuf" FORCE)
+set(SPM_ENABLE_SHARED OFF CACHE BOOL "Build shared library" FORCE)
+
+FetchContent_Declare(
+  sentencepiece
+  GIT_REPOSITORY https://github.com/google/sentencepiece.git
+  GIT_TAG v0.2.1
+)
+FetchContent_MakeAvailable(sentencepiece)
 
 FetchContent_Declare(
   tokenizer_cpp
