@@ -1,5 +1,5 @@
 
-set(SPM_USE_BUILTIN_PROTOBUF OFF CACHE BOOL "Use external protobuf" FORCE)
+set(SPM_USE_BUILTIN_PROTOBUF ON CACHE BOOL "Use builtin protobuf" FORCE)
 set(SPM_ENABLE_SHARED OFF CACHE BOOL "Build shared library" FORCE)
 
 FetchContent_Declare(
