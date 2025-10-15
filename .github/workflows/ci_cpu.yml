@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - master
+      - clean-start-v0
   pull_request:
     branches:
       - master

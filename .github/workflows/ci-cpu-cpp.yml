@@ -2,10 +2,11 @@ name: CI CPU - CPP Build
 
 on:
   workflow_dispatch:
-#   push:
-#     branches:
-#       - master
-#
+  push:
+    branches:
+      - master
+      - clean-start-v0
+
 concurrency:
   group: ci-cpu-${{ github.workflow }}-${{ github.ref == 'refs/heads/master' && github.run_number || github.ref }}
   cancel-in-progress: true
