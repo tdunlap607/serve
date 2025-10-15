@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - master
+      - last-working-commit
 
 concurrency:
   group: ci-cpu-${{ github.workflow }}-${{ github.ref == 'refs/heads/master' && github.run_number || github.ref }}
@@ -16,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04]
+        os: [ubuntu-22.04]
     steps:
       # - name: Setup Python for M1
       #   if: matrix.os == 'macos-14'
