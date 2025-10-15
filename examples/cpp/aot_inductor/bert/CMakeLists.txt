@@ -1,18 +1,8 @@
 
-set(SPM_USE_BUILTIN_PROTOBUF ON CACHE BOOL "Use builtin protobuf" FORCE)
-set(SPM_ENABLE_SHARED OFF CACHE BOOL "Build shared library" FORCE)
-
-FetchContent_Declare(
-  sentencepiece
-  GIT_REPOSITORY https://github.com/google/sentencepiece.git
-  GIT_TAG v0.2.1
-)
-FetchContent_MakeAvailable(sentencepiece)
-
 FetchContent_Declare(
   tokenizer_cpp
-  GIT_REPOSITORY https://github.com/mlc-ai/tokenizers-cpp.git
-  GIT_TAG 55d53aa38dc8df7d9c8bd9ed50907e82ae83ce66
+  GIT_REPOSITORY https://github.com/tdunlap607/tokenizers-cpp
+  GIT_TAG 4ef19e9f947f4a96c57b038e24ac1556fcd39725
 )
 
 FetchContent_MakeAvailable(tokenizer_cpp)
