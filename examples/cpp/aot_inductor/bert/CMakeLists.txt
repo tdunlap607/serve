@@ -2,7 +2,7 @@
 FetchContent_Declare(
   tokenizer_cpp
   GIT_REPOSITORY https://github.com/mlc-ai/tokenizers-cpp.git
-  GIT_TAG 55d53aa38dc8df7d9c8bd9ed50907e82ae83ce66
+  GIT_TAG 27dbe17d7268801ec720569167af905c88d3db50
 )
 
 FetchContent_MakeAvailable(tokenizer_cpp)
