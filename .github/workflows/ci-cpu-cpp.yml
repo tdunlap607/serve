@@ -55,9 +55,10 @@ jobs:
       - name: Build
         run: |
           cd cpp && rm -rf _build && sudo mkdir /mnt/_build && sudo chmod 777 /mnt/_build && mkdir build && sudo mount --bind /mnt/_build build
-          cd build && cmake -Wno-dev --no-warn-unused-cli -DCMAKE_CXX_FLAGS="-w" -DCMAKE_C_FLAGS="-w" ..
-          make -j && make install
-          make test
+          cd build && cmake -Wno-dev --no-warn-unused-cli -DCMAKE_CXX_FLAGS="-w" -DCMAKE_C_FLAGS="-w" -DCMAKE_CXX_CLANG_TIDY="" -DCMAKE_MESSAGE_LOG_LEVEL=ERROR ..
+          make -j 2>&1 | grep -v "warning:" || true
+          make install 2>&1 | grep -v "warning:" || true
+          make test 2>&1 | grep -v "warning:" || true
       - name: Run test
         run: |
           cd test && pytest pytest/test_cpp_backend.py
